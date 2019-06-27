@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/activitygamebackground"/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true">
+
+		<ImageView
+			android:src="@android:drawable/ic_delete"
+			android:layout_width="32dp"
+			android:layout_height="32dp"
+			android:id="@+id/activitygamemenu"/>
+
+	</RelativeLayout>
+
+</FrameLayout>
+

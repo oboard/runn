@@ -10,7 +10,11 @@
 		android:resizeableActivity="true"
         android:theme="@style/AppTheme">
         
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+			android:screenOrientation="portrait"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTask"
+			android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 

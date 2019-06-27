@@ -2,7 +2,8 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:id="@+id/activitymainRelativeLayout">
 
 	<View
 		android:background="#FF009688"
@@ -39,6 +40,18 @@
 		android:paddingRight="70dp"
 		android:paddingLeft="20dp"
 		android:paddingBottom="20dp"/>
+
+	<FrameLayout
+		android:layout_alignParentBottom="true"
+		android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+		android:visibility="gone"
+		android:id="@+id/activitymainFrameLayout">
+
+		<include
+			layout="@layout/activity_game"/>
+
+	</FrameLayout>
 
 </RelativeLayout>
 

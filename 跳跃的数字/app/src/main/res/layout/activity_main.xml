@@ -13,21 +13,28 @@
 		android:scrollbars="none"
 		android:overScrollMode="never"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:id="@+id/activitymainScrollView">
 
 		<LinearLayout
 			android:orientation="vertical"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/activitymainLinearLayout"/>
+			android:id="@+id/activitymainLinearLayout"
+			android:padding="30dp"/>
 
 	</ScrollView>
 
 	<ImageView
-		android:src="@drawable/c"
-		android:layout_width="200dp"
-		android:layout_height="200dp"
-		android:layout_alignParentBottom="true"/>
+		android:src="@drawable/setting"
+		android:layout_width="150dp"
+		android:layout_height="150dp"
+		android:layout_alignParentBottom="true"
+		android:background="@drawable/c"
+		android:paddingTop="70dp"
+		android:paddingRight="70dp"
+		android:paddingLeft="20dp"
+		android:paddingBottom="20dp"/>
 
 </RelativeLayout>
 

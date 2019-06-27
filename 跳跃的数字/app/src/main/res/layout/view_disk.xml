@@ -8,10 +8,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-		android:padding="10dp"
-		android:elevation="10dp"
 		android:src="@drawable/image_1"
-		android:translationZ="10dp"
 		android:id="@+id/viewdiskImageView">
 
 	</ImageView>

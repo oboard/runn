@@ -21,15 +21,18 @@ import android.view.MotionEvent;
 import android.os.Debug;
 import java.util.ArrayList;
 import java.util.Iterator;
+import android.view.View.OnScrollChangeListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends Activity {
 
-	ImageView startImage;
+	View start;
 	LinearLayout lay;
-	ScrollView scr;
+	RLScrollView scr;
 	ArrayList<DiskView> dv = new ArrayList<DiskView>();
 
-	
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +40,14 @@ public class MainActivity extends Activity {
 
 		setContentView(R.layout.activity_start);
 
-		startImage = findViewById(R.id.startimage);
+		start = findViewById(R.id.startimage);
 
 		ValueAnimator ani = ValueAnimator.ofFloat(0.01f, 0.8f, 0);
 
 		ani.setDuration(2000).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 			public void onAnimationUpdate(ValueAnimator animaion) {
 				float a = animaion.getAnimatedValue();
-				startImage.setAlpha(a);
+				start.setAlpha(a);
 				if (a == 0) {
 					loadmain();
 
@@ -56,25 +59,57 @@ public class MainActivity extends Activity {
 
 
     }
+	static float nearly = 0;
+	static DiskView nearlydv;
 	public void loadmain() {
 		setContentView(R.layout.activity_main);
 		lay = findViewById(R.id.activitymainLinearLayout);
 		scr = findViewById(R.id.activitymainScrollView);
-		scr.setOnTouchListener(new OnTouchListener() {
-			public boolean onTouch(View view , MotionEvent me) {
-			 	int sy = view.getScrollY();
+		scr.setOnScrollListener(new  RLScrollView.OnScrollChangedListener() {
+			public void onScrollChanged(int x, int y, int ox, int oy) {
+				nearly = 0;
 				Iterator it1 = dv.iterator();
 				while (it1.hasNext()) {
 					DiskView d = (DiskView)it1.next();
-					float a = 1 - Math.abs(scr.getHeight() / 2 - (d.getY() - sy + d.getHeight() / 2)) / scr.getHeight();
+					float a = 1 - Math.abs(scr.getHeight() / 2 - (d.getY() - y + d.getHeight() / 2)) / scr.getHeight()/2;
 					d.setScaleX(a);
 					d.setScaleY(a);
 					d.setAlpha(a);
+					if (nearly < a) {
+						nearly = a;
+						nearlydv = d;
+					}
+
 				}
+			}
+		});
+		scr.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View view, MotionEvent event) {
+				if (event.getAction() == event.ACTION_UP) {
+					ValueAnimator ani = ValueAnimator.ofFloat(scr.getScrollY(), nearlydv.getY() + scr.getHeight() / 2 - nearlydv.getHeight() - dip2px(30));
+
+					ani.setDuration(500).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+						public void onAnimationUpdate(ValueAnimator animaion) {
+							float a = animaion.getAnimatedValue();
+							scr.setScrollY(Math.round(a));
+						}
+					});
+				//	ani.setStartDelay(1000);
+					ani.start();
+				}		
 				return false;
 			}
 		});
-		
+		loaddisk();
+		loaddisk();
+		loaddisk();
+		loaddisk();
+		loaddisk();
+		loaddisk();
+		loaddisk();
+		loaddisk();
+		loaddisk();
+		loaddisk();
 		loaddisk();
 		loaddisk();
 		loaddisk();
@@ -86,6 +121,12 @@ public class MainActivity extends Activity {
 		lay.addView(it);
 	}
 
+
+	public int dip2px(float dpValue) {
+		final float scale = getResources().getDisplayMetrics().density;
+		return (int) (dpValue * scale + 0.5f);
+	}
+	
 	class DiskView extends FrameLayout {
 		private ImageView mImg;
 
@@ -112,5 +153,6 @@ public class MainActivity extends Activity {
 		public void setTitleText(String title) {
 			mTitleTv.setText(title);
 		}
+		
 	}
 }

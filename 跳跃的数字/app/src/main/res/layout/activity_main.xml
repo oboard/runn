@@ -9,12 +9,16 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
 
-	<ScrollView
+	<com.oboard.runn.RLScrollView
+		android:clipToPadding="false"
+		android:clipChildren="false"
 		android:scrollbars="none"
 		android:overScrollMode="never"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:id="@+id/activitymainScrollView">
+		android:id="@+id/activitymainScrollView"
+		android:paddingBottom="100dp"
+		android:paddingTop="100dp">
 
 		<LinearLayout
 			android:orientation="vertical"
@@ -23,7 +27,7 @@
 			android:id="@+id/activitymainLinearLayout"
 			android:padding="30dp"/>
 
-	</ScrollView>
+	</com.oboard.runn.RLScrollView>
 
 	<ImageView
 		android:src="@drawable/setting"
